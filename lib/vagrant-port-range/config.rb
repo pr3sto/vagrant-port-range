@@ -14,14 +14,12 @@ module VagrantPlugins
                 options = options.dup
 
                 if !options[:id]
-                    default_id = "#{SecureRandom.uuid}"
-                    options[:id] = default_id
+                    options[:id] = "#{SecureRandom.uuid}"
                 end
 
                 id = options[:id]
                 forwarded_ports[id] = options
             end
-
         end
 
     end

@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name            = 'vagrant-port-range'
   s.version         = VagrantPlugins::PortRange::VERSION
   s.date            = '2017-12-01'
-  s.description     = 'Vagrant plugin for picking free port from given range'
+  s.description     = 'Vagrant plugin for mapping ports with given port range'
   s.summary         = s.description
   s.authors         = ['Alexey Chirukhin']
   s.email           = 'pr3sto1377@gmail.com'

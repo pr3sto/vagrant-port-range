@@ -17,7 +17,6 @@ module VagrantPlugins
             action_hook(:portrange, :machine_action_up) do |hook|
                 hook.prepend(Action::SetupPorts)
             end
-
         end
 
     end
