@@ -39,6 +39,8 @@ end
 The result:
 
 ```text
+$ vagrant up
+
 Bringing machine 'default' up with 'docker' provider...
 ==> default: [vagrant-port-range] get free port 4022
 ==> default: [vagrant-port-range] get free port 3744
@@ -51,4 +53,33 @@ Bringing machine 'default' up with 'docker' provider...
     default: Container created: b01667fcb339703a
 ==> default: Starting container...
 
+$
+```
+
+In case of situation when all ports from range are in use:
+
+```ruby
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.portrange.forwarded_port guest: 6901, host_range: [80, 81]
+  config.vm.provider "docker" do |d|
+    d.image = "consol/ubuntu-xfce-vnc"
+  end
+end
+
+```
+
+```text
+# make them busy
+$ python3 -m http.server 80
+$ python3 -m http.server 81
+
+$ vagrant up
+
+Bringing machine 'default' up with 'docker' provider...
+==> default: [vagrant-port-range] Can't get free port from range [80, 81]
+
+$
 ```
