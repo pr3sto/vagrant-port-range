@@ -1,9 +1,7 @@
-require 'bundler'
-
 begin
   require 'vagrant'
 rescue LoadError
-  Bundler.require(:default, :development)
+  raise "This plugin must run within Vagrant."
 end
 
 require 'vagrant-port-range/action'
