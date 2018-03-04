@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/vagrant-port-range.svg)](https://badge.fury.io/rb/vagrant-port-range)
 
-vagrant-port-range is a Vagrant plugin for mapping ports with given port range.
+vagrant-port-range is a Vagrant plugin for mapping forwarded ports using range of host ports 
 
 ## Installation
 
