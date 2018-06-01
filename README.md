@@ -2,12 +2,12 @@
 
 [![Gem Version](https://badge.fury.io/rb/vagrant-port-range.svg)](https://badge.fury.io/rb/vagrant-port-range)
 
-vagrant-port-range is a Vagrant plugin for mapping forwarded ports using range of host ports 
+vagrant-port-range is a Vagrant plugin for mapping forwarded ports using range of host ports.
 
 ## Installation
 
-```bash
-$ vagrant plugin install vagrant-port-range
+```console
+foo@bar:~$ vagrant plugin install vagrant-port-range
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ The plugin is loaded automatically once installed.
 
 ### config.portrange.forwarded_port
 
-Use [standart options from forwarded_port](https://www.vagrantup.com/docs/networking/forwarded_ports.html), except for one option **host**. Use instead **host_range** with desired port range. Plugin will automatically pick free port from given range and insert it into **host** option.
+Use [standart options from forwarded_port](https://www.vagrantup.com/docs/networking/forwarded_ports.html), except for one option **host**. Instead if **host** use **host_range** with desired port range. Plugin will automatically pick free port from given range and insert it into **host** option.
 
 Example Vagrantfile:
 
@@ -38,8 +38,8 @@ end
 
 The result:
 
-```text
-$ vagrant up
+```console
+foo@bar:~$ vagrant up
 
 Bringing machine 'default' up with 'docker' provider...
 ==> default: [vagrant-port-range] get free port 4022
@@ -53,7 +53,7 @@ Bringing machine 'default' up with 'docker' provider...
     default: Container created: b01667fcb339703a
 ==> default: Starting container...
 
-$
+foo@bar:~$
 ```
 
 In case of situation when all ports from range are in use:
@@ -71,15 +71,15 @@ end
 
 ```
 
-```text
+```console
 # make them busy
-$ python3 -m http.server 80
-$ python3 -m http.server 81
+foo@bar:~$ python3 -m http.server 80
+foo@bar:~$ python3 -m http.server 81
 
-$ vagrant up
+foo@bar:~$ vagrant up
 
 Bringing machine 'default' up with 'docker' provider...
 ==> default: [vagrant-port-range] Can't get free port from range [80, 81]
 
-$
+foo@bar:~$
 ```
