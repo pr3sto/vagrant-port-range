@@ -18,7 +18,7 @@ The plugin is loaded automatically once installed.
 
 ### config.portrange.forwarded_port
 
-Use [standart options from forwarded_port](https://www.vagrantup.com/docs/networking/forwarded_ports.html), except for one option **host**. Instead if **host** use **host_range** with desired port range. Plugin will automatically pick free port from given range and insert it into **host** option.
+Use [standart options from forwarded_port](https://www.vagrantup.com/docs/networking/forwarded_ports.html), except for one option **host**. Instead of **host** use **host_range** with desired port range. Plugin will automatically pick free port from given range and insert it into **host** option.
 
 Example Vagrantfile:
 
