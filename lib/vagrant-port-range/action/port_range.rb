@@ -12,29 +12,31 @@ module VagrantPlugins
                 end
 
                 def call(env)
-                    setuped = true
+                    setupped = true
                     
                     # setup forwarded ports
                     forwarded_ports = @machine.config.portrange.forwarded_ports
                     forwarded_ports.each do |id, options|
                         # get free port and add to host
                         host_port = get_free_port(options[:host_range])
+
                         if host_port == -1
-                            setuped = false
+                            setupped = false
                             break
                         end 
+                        
                         options[:host] = host_port
                         @ui.info("[vagrant-port-range] get free port #{host_port}")
                         
                         # delete port range option
                         options.tap { |op| op.delete(:host_range) }
 
-                        # add options in standart way
+                        # standart way to add forwarded_port
                         @machine.config.vm.network "forwarded_port", options
                     end
 
-                    # continue if all good
-                    if setuped
+                    # continue if all ports setupped
+                    if setupped
                         @app.call(env)
                     end
                 end

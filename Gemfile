@@ -1,9 +1,9 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 group :development do
-  gem "vagrant", git: "https://github.com/mitchellh/vagrant.git"
+  gem 'vagrant', git: 'https://github.com/mitchellh/vagrant.git'
 end
 
 group :plugins do
-  gem "vagrant-port-range", path: "."
+  gem 'vagrant-port-range', path: '.'
 end

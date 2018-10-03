@@ -2,7 +2,6 @@ require 'securerandom'
 
 module VagrantPlugins
     module PortRange
-
         class Config < Vagrant.plugin("2", :config)
             attr_reader :forwarded_ports
 
@@ -21,6 +20,5 @@ module VagrantPlugins
                 forwarded_ports[id] = options
             end
         end
-
     end
 end
