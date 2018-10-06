@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name            = 'vagrant-port-range'
   s.version         = VagrantPlugins::PortRange::VERSION
   s.platform        = Gem::Platform::RUBY
-  s.date            = '2017-12-01'
+  s.date            = '2018-10-06'
   s.description     = 'Vagrant plugin for mapping ports with given port range'
   s.summary         = s.description
   s.homepage        = 'https://github.com/pr3sto/vagrant-port-range'
