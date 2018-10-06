@@ -18,7 +18,9 @@ The plugin is loaded automatically once installed.
 
 ### config.portrange.forwarded_port
 
-Use [standart options from forwarded_port](https://www.vagrantup.com/docs/networking/forwarded_ports.html), except for one option **host**. Instead of **host** use **host_range** with desired port range. Plugin will automatically pick free port from given range and insert it into **host** option.
+Use [standart options from forwarded_port](https://www.vagrantup.com/docs/networking/forwarded_ports.html), except for next options:
+* Instead of **host** use **host_range** with desired port range. Plugin will automatically pick free port from given range and insert it into **host** option.
+* **attempts** - number of attempts for plugin to try get free port from given range. Plugin will try to randomly pick port and check whether it is free or not.
 
 Example Vagrantfile:
 
@@ -27,8 +29,8 @@ Example Vagrantfile:
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.portrange.forwarded_port guest: 6901, host_range: [3000, 4100]
-  config.portrange.forwarded_port guest: 8080, host_range: [3000, 4100]
+  config.portrange.forwarded_port guest: 6901, host_range: [3000, 4100], attempts: 10
+  config.portrange.forwarded_port guest: 8080, host_range: [3000, 4100], attempts: 10
   config.vm.provider "docker" do |d|
     d.image = "consol/ubuntu-xfce-vnc"
   end
@@ -42,8 +44,8 @@ The result:
 foo@bar:~$ vagrant up
 
 Bringing machine 'default' up with 'docker' provider...
-==> default: [vagrant-port-range] get free port 4022
-==> default: [vagrant-port-range] get free port 3744
+==> default: [vagrant-port-range] Free port found: 4022
+==> default: [vagrant-port-range] Free port found: 3744
 ==> default: Creating the container...
     default:   Name: vagrantportrange_default_1514061829
     default:  Image: consol/ubuntu-xfce-vnc
@@ -63,7 +65,7 @@ In case of situation when all ports from range are in use:
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.portrange.forwarded_port guest: 6901, host_range: [80, 81]
+  config.portrange.forwarded_port guest: 6901, host_range: [80, 81], attempts: 10
   config.vm.provider "docker" do |d|
     d.image = "consol/ubuntu-xfce-vnc"
   end
@@ -79,7 +81,7 @@ foo@bar:~$ python3 -m http.server 81
 foo@bar:~$ vagrant up
 
 Bringing machine 'default' up with 'docker' provider...
-==> default: [vagrant-port-range] Can't get free port from range [80, 81]
+==> default: [vagrant-port-range] Free port from range [80, 81] not found
 
 foo@bar:~$
 ```
