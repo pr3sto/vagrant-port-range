@@ -4,14 +4,6 @@ rescue LoadError
     raise 'This plugin must run within Vagrant.'
 end
 
-# This is a sanity check to make sure no one is attempting to install
-# this into an early Vagrant version.
-if Vagrant::VERSION < '1.2.0'
-    raise 'The vagrant-port-range plugin is only compatible with Vagrant 1.2+'
-end
-
-require_relative 'action/port_range'
-
 module VagrantPlugins
     module PortRange
         class Plugin < Vagrant.plugin('2')
@@ -28,6 +20,7 @@ module VagrantPlugins
             end
 
             action_hook(:portrange, :machine_action_up) do |hook|
+                require_relative 'action/port_range'
                 hook.prepend(Action::SetupPorts)
             end
         end
