@@ -22,7 +22,7 @@ Use [standart options from forwarded_port](https://www.vagrantup.com/docs/networ
 * Instead of **host** use **host_range** with desired port range. Plugin will automatically pick free port from given range and insert it into **host** option.
 * **attempts** - number of attempts for plugin to try get free port from given range. Plugin will try to randomly pick port and check whether it is free or not.
 
-### Example
+## Example
 
 Vagrantfile:
 
